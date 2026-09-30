@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DLcuidar — Cuidados a domicílio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Nunito+Sans:wght@400;600&display=swap">
+<style>
+:root{--teal:#0E4D52;--teal2:#1B7A76;--mint:#DDF2EC;--sand:#FBFAF6;--amber:#F2B441;--ink:#12262A;--muted:#4C6266;--line:#D5E4E0;--bg:var(--sand);--card:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1C1E;--card:#13292C;--ink:#EAF3F1;--muted:#A9C0BC;--line:#24403F;--mint:#163537}}
+:root[data-theme="dark"]{--bg:#0C1C1E;--card:#13292C;--ink:#EAF3F1;--muted:#A9C0BC;--line:#24403F;--mint:#163537}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Nunito Sans",system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.brand span{font-weight:500;color:var(--teal2)}
+nav{display:flex;gap:22px;align-items:center;font-weight:600;font-size:15px}
+nav a{text-decoration:none}
+.btn{display:inline-block;background:var(--teal);color:#fff;padding:13px 24px;border-radius:999px;font-weight:600;text-decoration:none;border:0;font:600 16px "Nunito Sans",sans-serif;cursor:pointer}
+.btn:hover{background:var(--teal2)}
+.btn.alt{background:var(--amber);color:#2A1D00}
+.btn.alt:hover{background:#f6c460}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.hero{padding:56px 0 48px;background:linear-gradient(180deg,var(--mint),var(--bg))}
+.hero .wrap{display:grid;gap:36px;grid-template-columns:1.2fr .8fr;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-1.5px}
+.hero p{font-size:19px;color:var(--muted);max-width:52ch;margin:18px 0 26px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-art{background:var(--teal);border-radius:32px 32px 32px 90px;padding:30px;color:#fff;position:relative}
+.hero-art svg{width:100%;height:auto;display:block}
+.hero-art p{color:#CFE9E4;font-size:15px;margin:14px 0 0}
+section{padding:60px 0}
+h2{font-size:clamp(27px,4vw,38px);font-weight:700;letter-spacing:-.8px;margin-bottom:10px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 30px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.card svg{width:40px;height:40px;color:var(--teal2);margin-bottom:10px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.steps{counter-reset:s;display:grid;gap:14px;padding:0;list-style:none;max-width:680px}
+.steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.steps li:before{content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:var(--amber);color:#2A1D00;font:800 18px "Bricolage Grotesque";display:grid;place-items:center}
+.steps b{display:block;font-family:"Bricolage Grotesque";font-size:19px}
+.pro{background:var(--teal);color:#fff;border-radius:32px;padding:40px 28px}
+.pro .lead{color:#CFE9E4}
+.pro .chips{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 24px}
+.chip{background:rgba(255,255,255,.14);padding:8px 16px;border-radius:999px;font-weight:600;font-size:15px}
+form{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+label{font-size:14px;font-weight:600;display:grid;gap:6px}
+input,select{font:400 16px "Nunito Sans",sans-serif;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#12262A;width:100%}
+form .full{grid-column:1/-1}
+.fam{max-width:680px}
+.fam .card{padding:28px}
+.fam label{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}nav a:not(.btn){display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.chips2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.chips2 button{font:600 15px "Nunito Sans";padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}.chips2 button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.av{width:52px;height:52px;border-radius:50%;background:var(--teal2);color:#fff;display:grid;place-items:center;font:800 20px "Bricolage Grotesque";float:left;margin-right:12px}
+.ver{display:inline-block;background:var(--mint);color:var(--teal2);font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px}
+.cert{font-size:14px;color:var(--muted);margin:4px 0}.cert img{max-width:100%;border-radius:10px;margin-top:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:20;padding:16px}.modal[hidden]{display:none}.mbox{max-width:460px;width:100%;max-height:90vh;overflow:auto}
+.zap{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#25D366;color:#053;font-weight:700;padding:12px 18px;border-radius:999px;text-decoration:none;z-index:9}
+.pix{word-break:break-all;background:var(--mint);padding:10px;border-radius:10px;font-size:13px;margin:10px 0}
+summary{cursor:pointer}
+.admin{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+.badge.ok{background:#DCF5E5;color:#116B37}.badge.no{background:#FBEFD8;color:#8A5A00}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="#" aria-label="DLcuidar">
+<svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#0E4D52"/><path d="M10 25 24 12l14 13" fill="none" stroke="#F2B441" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 37s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.400-9 12-9 12z" fill="#fff"/></svg>
+DL<span>cuidar</span></a>
+<nav><a href="#servicos">Serviços</a><a href="#equipe">Profissionais</a><a href="#profissionais">Seja parceiro</a><a class="btn" href="#familia">Pedir cuidador</a></nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+<div>
+<h1>Cuidado profissional, no conforto de casa.</h1>
+<p>Conectamos famílias a técnicos de enfermagem, cuidadores de idosos e fisioterapeutas — para quem precisa de apoio no dia a dia ou depois da alta hospitalar.</p>
+<div class="ctas"><a class="btn alt" href="#familia">Preciso de um profissional</a><a class="btn ghost" href="#profissionais">Sou profissional</a></div>
+</div>
+<div class="hero-art">
+<svg viewBox="0 0 240 170" aria-hidden="true"><path d="M20 90 120 20l100 70" fill="none" stroke="#F2B441" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><rect x="45" y="88" width="150" height="72" rx="14" fill="#1B7A76"/><path d="M120 146s-32-20-32-43a17 17 0 0 1 32-10 17 17 0 0 1 32 10c0 23-32 43-32 43z" fill="#fff"/></svg>
+<p>Atendimento humano, com profissionais verificados.</p>
+</div>
+</div></div>
+
+<section id="servicos"><div class="wrap">
+<h2>Quem cuida de quem você ama</h2>
+<p class="lead">Escolha o profissional certo para cada necessidade, por turno, diária ou de forma contínua.</p>
+<div class="grid">
+<div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/></svg><h3>Técnico de enfermagem</h3><p>Curativos, medicação, sinais vitais e acompanhamento pós-alta.</p></div>
+<div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.500-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.500-7 10-7 10z"/></svg><h3>Cuidador de idosos</h3><p>Higiene, alimentação, mobilidade e companhia, com atenção e paciência.</p></div>
+<div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 8v6l-3 6M12 14l3 6M7 11l5-3 5 3"/></svg><h3>Fisioterapeuta</h3><p>Reabilitação e exercícios em casa para recuperar autonomia.</p></div>
+</div></div></section>
+
+<section id="como" style="background:var(--mint)"><div class="wrap">
+<h2>Como funciona</h2>
+<p class="lead">Simples e sem burocracia.</p>
+<ol class="steps">
+<li><div><b>Conte o que precisa</b>Preencha o pedido com o tipo de cuidado, horários e bairro.</div></li>
+<li><div><b>Indicamos o profissional</b>Selecionamos quem tem o perfil e a experiência ideais.</div></li>
+<li><div><b>O cuidado começa</b>Você acompanha tudo e pode ajustar a qualquer momento.</div></li>
+</ol></div></section>
+
+<section id="equipe"><div class="wrap">
+<h2>Escolha seu profissional</h2>
+<p class="lead">Veja formação, cursos e certificados antes de contratar.</p>
+<div class="chips2" id="flt"></div>
+<div class="grid" id="list"></div>
+</div></section>
+
+<section id="orc" style="background:var(--mint)"><div class="wrap fam">
+<h2>Como funciona o valor</h2>
+<p class="lead">A DLcuidar cobra apenas uma taxa de contato de R$ 9,90 para liberar o WhatsApp do profissional. O valor do atendimento (turno, plantão ou diária) é combinado direto com ele, sem intermediação.</p>
+</div></section>
+
+<section id="profissionais"><div class="wrap"><div class="pro">
+<h2>Trabalhe com a DLcuidar</h2>
+<p class="lead">Crie seu perfil e adicione cursos e certificados. Os clientes veem tudo antes de contratar.</p>
+<form id="fp">
+<label>Nome completo<input name="n" required autocomplete="name"></label>
+<label>WhatsApp<input name="w" required inputmode="tel" autocomplete="tel"></label>
+<label>Profissão<select name="p"><option>Técnico de enfermagem</option><option>Cuidador de idosos</option><option>Fisioterapeuta</option></select></label>
+<label>Cidade / bairro<input name="c" required></label>
+<label>Valor do turno de 6h (R$)<input name="v" type="number" min="10" required></label>
+<label>Chave Pix para receber<input name="k" required></label>
+<label class="full">Sobre você<input name="b" maxlength="140"></label>
+<div class="full"><button class="btn alt" type="submit">Criar meu perfil</button></div>
+</form>
+<div id="pn" hidden style="margin-top:28px;border-top:1px solid rgba(255,255,255,.25);padding-top:22px">
+<h3 style="margin-bottom:12px">Meus cursos e certificados</h3>
+<form id="fc">
+<label>Curso<input name="t" required></label>
+<label>Instituição<input name="i" required></label>
+<label>Ano<input name="a" type="number" min="1980" max="2026" required></label>
+<label>Foto do certificado<input name="f" type="file" accept="image/*"></label>
+<div class="full"><button class="btn alt" type="submit">Adicionar certificado</button></div>
+</form><div id="mc" style="margin-top:14px"></div></div>
+</div></div></section>
+
+<section style="background:var(--mint)"><div class="wrap">
+<h2>Quem já usou</h2>
+<div class="grid">
+<div class="card"><p>“Minha mãe voltou do hospital e em um dia já tínhamos uma técnica em casa.”</p><p><b>Depoimento de exemplo</b></p></div>
+<div class="card"><p>“Consigo mostrar meus cursos e receber por Pix direto.”</p><p><b>Depoimento de exemplo</b></p></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Dúvidas frequentes</h2>
+<details class="card"><summary><b>Como pago?</b></summary><p>Por Pix, direto ao profissional. Você copia o código ou lê o QR Code.</p></details>
+<details class="card" style="margin-top:10px"><summary><b>Os certificados são conferidos?</b></summary><p>O profissional envia a foto; a equipe DLcuidar confere antes de exibir o selo de verificado.</p></details>
+<details class="card" style="margin-top:10px"><summary><b>Como escolho o turno?</b></summary><p>Turnos de 6h, plantões de 12h ou diárias de 24h, conforme a necessidade.</p></details>
+</div></section>
+
+<div id="md" class="modal" hidden><div class="card mbox"><button class="btn ghost" id="mx" style="float:right;padding:6px 14px">Fechar</button><div id="mb"></div></div></div>
+<a class="zap" id="zap" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">WhatsApp</a>
+</main>
+
+<footer><div class="wrap"><div><b>DLcuidar</b> — cuidados a domicílio</div><div>© 2026 DLcuidar. Todos os direitos reservados.</div></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+var ZAP="5521969222458",PIX_CIA="";
+var CONTACT_FEE=9.90,SUB_FEE=19.90;// preencha PIX_CIA com a chave Pix da DLcuidar para receber tudo direto por ela
+var SB_URL="https://wmkgauhqheurdoeryszm.supabase.co",SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indta2dhdWhxaGV1cmRvZXJ5c3ptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2MTI2MjMsImV4cCI6MjEwNjE4ODYyM30.iuHo39dFlIk8XIh6NjS5UjDEtUVSNTmmEKIwiuJseMI";
+var sb=supabase.createClient(SB_URL,SB_KEY);
+var ADMIN_PASS="dlcuidar2026"; // troque esta senha; acesse o painel com ?admin=1 no final do link do site
+var $=function(i){return document.getElementById(i)};
+function esc(t){var d=document.createElement("div");d.textContent=t==null?"":t;return d.innerHTML}
+var SEED=[{id:"e1",n:"Marta Souza",w:"5521900000001",p:"Técnico de enfermagem",c:"Centro",v:120,k:"marta@exemplo.com",b:"10 anos em pós-operatório e curativos.",ex:1,ver:1,sub:1,cs:[{t:"Técnico em Enfermagem",i:"Escola Técnica Modelo",a:2014}]},{id:"e2",n:"João Alves",w:"5521900000002",p:"Cuidador de idosos",c:"Zona Sul",v:90,k:"joao@exemplo.com",b:"Experiência com Alzheimer e mobilidade.",ex:1,ver:1,sub:1,cs:[{t:"Curso de Cuidador de Idosos",i:"Instituto Exemplo",a:2020}]},{id:"e3",n:"Carla Nunes",w:"5521900000003",p:"Fisioterapeuta",c:"Zona Norte",v:180,k:"carla@exemplo.com",b:"Reabilitação motora em domicílio.",ex:1,ver:1,sub:1,cs:[]}];
+var PROS=[],F="Todos",ME=localStorage.getItem("dl_me")||null;
+function all(){return SEED.concat(PROS)}
+async function load(){
+ var r=await sb.from("professionals").select("*, certificates(*)").order("created_at");
+ PROS=(r.data||[]).map(function(x){return {id:x.id,n:x.name,w:x.whatsapp,p:x.profession,c:x.city,v:+x.price_6h,k:x.pix_key,b:x.bio,ex:0,ver:x.verified,sub:x.subscription_active,cs:(x.certificates||[]).map(function(c){return{t:c.title,i:c.institution,a:c.year,f:c.photo_url}})}});
+ draw();
+}
+function visible(){return all().filter(function(x){return x.sub})}
+function zl(){$("zap").href="https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá! Quero saber mais sobre a DLcuidar.")}zl();
+function draw(){
+ var ps=["Todos","Técnico de enfermagem","Cuidador de idosos","Fisioterapeuta"];
+ $("flt").innerHTML=ps.map(function(p){return '<button class="'+(p==F?"on":"")+'" data-p="'+p+'">'+p+'</button>'}).join("");
+ var L=visible().filter(function(x){return F=="Todos"||x.p==F});
+ $("list").innerHTML=L.map(function(x){return '<div class="card"><div class="av">'+esc(x.n[0])+'</div><h3 style="font-size:19px">'+esc(x.n)+' '+(x.ver?'<span class="ver">verificado</span>':'')+'</h3><span class="ver" style="background:var(--bg);color:var(--muted)">'+esc(x.p)+'</span><p style="margin-top:8px">'+esc(x.b||"")+'</p><p class="cert"><b>'+esc(x.c)+'</b> · a partir de R$ '+x.v+' / turno 6h (combinado direto com o profissional)'+(x.ex?" · perfil de exemplo":"")+'</p>'+(x.cs.length?'<button class="btn ghost" style="padding:8px 16px;font-size:14px" data-c="'+x.id+'">Ver '+x.cs.length+' certificado(s)</button> ':'<p class="cert">Sem certificados enviados</p>')+'<button class="btn" style="padding:8px 16px;font-size:14px;margin-top:8px" data-h="'+x.id+'">Falar com este profissional · R$ '+CONTACT_FEE.toFixed(2).replace(".",",")+'</button></div>'}).join("")||"<p>Nenhum profissional nesta categoria ainda.</p>";
+ mine();admin();
+}
+function mine(){var m=ME&&PROS.filter(function(x){return x.id==ME})[0];$("pn").hidden=!m;if(!m)return;$("mc").innerHTML=m.cs.map(function(c){return '<div class="cert" style="color:#CFE9E4">'+esc(c.t)+' — '+esc(c.i)+' ('+c.a+')</div>'}).join("")||"Nenhum certificado adicionado."}
+function crc(s){var c=65535;for(var i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(var j=0;j<8;j++)c=c&32768?((c<<1)^4129)&65535:(c<<1)&65535}return c.toString(16).toUpperCase().padStart(4,"0")}
+function f(i,v){return i+String(v.length).padStart(2,"0")+v}
+function pix(key,val,nome,cid){var m=f("00","br.gov.bcb.pix")+f("01",key);var p=f("00","01")+f("26",m)+f("52","0000")+f("53","986")+f("54",val.toFixed(2))+f("58","BR")+f("59",nome.slice(0,25))+f("60",cid.slice(0,15))+f("62",f("05","DLCUIDAR"));p+="6304";return p+crc(p)}
+function modal(h){$("mb").innerHTML=h;$("md").hidden=false}
+function unlock(x){modal('<h3>Contato liberado!</h3><p>Fale direto com <b>'+esc(x.n)+'</b> para combinar dia, horário e valor.</p><a class="btn alt" target="_blank" rel="noopener" href="https://wa.me/'+(x.w||"").replace(/\D/g,"")+'?text='+encodeURIComponent("Olá "+x.n+"! Vim da DLcuidar e paguei a taxa de contato. Podemos falar sobre o atendimento?")+'">Abrir WhatsApp de '+esc(x.n.split(" ")[0])+'</a>'+(x.ex||!x.w?'<p class="cert">Perfil de exemplo: sem WhatsApp real cadastrado.</p>':''))}
+async function contact(id){
+ var x=all().filter(function(y){return y.id==id})[0];var pixKey=PIX_CIA||x.k,code=pix(pixKey,CONTACT_FEE,"DLCUIDAR","BRASIL");
+ var payArea='<div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0"><button class="btn" id="mpBtn">Cartão ou Pix pelo Mercado Pago</button><button class="btn ghost" id="pixBtn">Pix direto (copia e cola)</button></div><div id="payArea"></div>';
+ modal('<h3>Taxa de contato</h3><p>Fale com <b>'+esc(x.n)+'</b> · <b>R$ '+CONTACT_FEE.toFixed(2).replace(".",",")+'</b></p>'+payArea);
+ $("mpBtn").onclick=async function(){$("payArea").innerHTML="Gerando pagamento…";
+  try{var r=await fetch(SB_URL+"/functions/v1/mp-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind:"contact",professional_id:id,professional_name:x.n})});
+   var d=await r.json();
+   if(d.init_point){location.href=d.init_point}else{$("payArea").innerHTML='<p class="cert">'+(d.error||"Mercado Pago ainda não está configurado.")+' Use o Pix direto por enquanto.</p>'}
+  }catch(e){$("payArea").innerHTML='<p class="cert">Não foi possível conectar ao Mercado Pago agora. Use o Pix direto.</p>'}};
+ $("pixBtn").onclick=async function(){if(!x.ex)await sb.from("bookings").insert({professional_id:id,client_name:"Site",client_whatsapp:"-",amount:CONTACT_FEE,kind:"contact"});
+  $("payArea").innerHTML='<div id="qr" style="background:#fff;padding:10px;display:inline-block;border-radius:10px"></div><div class="pix" id="pc">'+esc(code)+'</div><button class="btn" id="cp2">Copiar código Pix</button> <button class="btn alt" id="didpay">Já paguei, liberar contato</button>';
+  try{new QRCode($("qr"),{text:code,width:180,height:180})}catch(e){$("qr").textContent="QR indisponível: use o código."}
+  $("cp2").onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(code).then(function(){$("cp2").textContent="Copiado!"}).catch(function(){})};
+  $("didpay").onclick=function(){unlock(x)}}}
+async function subscribe(id,n){
+ modal('<h3>Assinatura mensal</h3><p>Para ficar visível na busca · <b>R$ '+SUB_FEE.toFixed(2).replace(".",",")+'/mês</b></p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0"><button class="btn" id="mpBtn">Pagar no cartão (renova sozinho)</button><button class="btn ghost" id="pixBtn">Pagar por Pix</button></div><div id="payArea"></div><p class="cert">Assim que o pagamento for confirmado, seu perfil aparece na busca. Você recebe uma mensagem quando estiver perto de vencer.</p>');
+ $("mpBtn").onclick=async function(){$("payArea").innerHTML="Gerando pagamento…";
+  try{var r=await fetch(SB_URL+"/functions/v1/mp-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({kind:"subscription",professional_id:id,professional_name:n})});
+   var d=await r.json();
+   if(d.init_point){location.href=d.init_point}else{$("payArea").innerHTML='<p class="cert">'+(d.error||"Mercado Pago ainda não está configurado.")+' Fale com a DLcuidar pelo WhatsApp.</p>'}
+  }catch(e){$("payArea").innerHTML='<p class="cert">Não foi possível conectar ao Mercado Pago agora.</p>'}};
+ $("pixBtn").onclick=function(){var code=pix(PIX_CIA||"contato@dlcuidar.com.br",SUB_FEE,"DLCUIDAR","BRASIL");
+  $("payArea").innerHTML='<div id="qr" style="background:#fff;padding:10px;display:inline-block;border-radius:10px"></div><div class="pix" id="pc">'+esc(code)+'</div><button class="btn" id="cp2">Copiar código Pix</button> <a class="btn alt" target="_blank" rel="noopener" href="https://wa.me/'+ZAP+'?text='+encodeURIComponent("Olá! Sou "+n+" e acabei de pagar a assinatura mensal por Pix. Segue o comprovante.")+'">Enviar comprovante</a>';
+  try{new QRCode($("qr"),{text:code,width:180,height:180})}catch(e){$("qr").textContent="QR indisponível: use o código."}
+  $("cp2").onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(code).then(function(){$("cp2").textContent="Copiado!"}).catch(function(){})}}}
+function admin(){
+ var on=new URLSearchParams(location.search).get("admin");
+ if(!on)return;
+ if(sessionStorage.getItem("dl_admin")!=="1"){var pw=prompt("Senha do painel:");if(pw!==ADMIN_PASS){alert("Senha incorreta.");return}sessionStorage.setItem("dl_admin","1")}
+ var h='<section><div class="wrap"><h2>Painel DLcuidar</h2>'+PROS.map(function(x){return '<div class="admin"><div><b>'+esc(x.n)+'</b> — '+esc(x.p)+' · '+esc(x.c)+' <span class="badge '+(x.ver?"ok":"no")+'">'+(x.ver?"verificado":"pendente")+'</span> <span class="badge '+(x.sub?"ok":"no")+'">'+(x.sub?"assinatura ativa":"sem assinatura")+'</span></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost" data-v="'+x.id+'" data-s="'+(x.ver?0:1)+'" style="padding:8px 16px">'+(x.ver?"Remover selo":"Verificar")+'</button><button class="btn ghost" data-sub="'+x.id+'" data-ss="'+(x.sub?0:1)+'" style="padding:8px 16px">'+(x.sub?"Desativar assinatura":"Ativar assinatura (Pix manual)")+'</button></div></div>'}).join("")+'</div></section>';
+ var box=$("adminbox");if(!box){box=document.createElement("div");box.id="adminbox";document.querySelector("header").after(box)}
+ box.innerHTML=h;
+}
+document.addEventListener("click",async function(e){var t=e.target;
+ if(t.dataset.p){F=t.dataset.p;draw()}
+ if(t.dataset.c){var x=all().filter(function(y){return y.id==t.dataset.c})[0];modal('<h3>'+esc(x.n)+'</h3>'+x.cs.map(function(c){return '<div class="cert"><b>'+esc(c.t)+'</b> — '+esc(c.i)+' ('+c.a+')'+(c.f?'<br><img alt="Certificado" src="'+c.f+'">':'')+'</div>'}).join(""))}
+ if(t.dataset.h){var x=all().filter(function(y){return y.id==t.dataset.h})[0];if(x.ex)unlock(x);else contact(t.dataset.h)}
+ if(t.dataset.v){await sb.from("professionals").update({verified:t.dataset.s=="1"}).eq("id",t.dataset.v);load()}
+ if(t.dataset.sub){var exp=t.dataset.ss=="1"?new Date(Date.now()+30*24*60*60*1000).toISOString():null;await sb.from("professionals").update({subscription_active:t.dataset.ss=="1",subscription_expires:exp}).eq("id",t.dataset.sub);load()}
+ if(t.id=="mx"||t.id=="md")$("md").hidden=true});
+$("fp").addEventListener("submit",async function(e){e.preventDefault();var d=new FormData(e.target);
+ var r=await sb.from("professionals").insert({name:d.get("n"),whatsapp:d.get("w"),profession:d.get("p"),city:d.get("c"),price_6h:+d.get("v"),pix_key:d.get("k"),bio:d.get("b")}).select().single();
+ if(r.error){alert("Não foi possível salvar. Tente novamente.");return}
+ ME=r.data.id;localStorage.setItem("dl_me",ME);var nome=d.get("n");e.target.reset();await load();$("pn").scrollIntoView();
+ subscribe(ME,nome);});
+$("fc").addEventListener("submit",async function(e){e.preventDefault();var d=new FormData(e.target),fl=d.get("f"),photo=null;
+ function ins(){sb.from("certificates").insert({professional_id:ME,title:d.get("t"),institution:d.get("i"),year:+d.get("a"),photo_url:photo}).then(function(){e.target.reset();load()})}
+ if(fl&&fl.size){if(fl.size>350000){alert("Foto grande demais (máx. 350 KB).");return}var r=new FileReader();r.onload=function(){photo=r.result;ins()};r.readAsDataURL(fl)}else ins()});
+load();
+</script>
+</body>
+</html>
